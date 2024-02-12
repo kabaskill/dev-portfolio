@@ -20,13 +20,8 @@ export default function ContainerBlock({ children, ...customMeta }) {
         <title>{meta.title}</title>
         <meta name="robots" content="follow, index" />
         <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://yourwebsite.com${router.asPath}`} />
-        <link rel="canonical" href={`https://yourwebsite.com${router.asPath}`} />
-        <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Manu Arora" />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:image" content={meta.image} />
+        <meta property="og:url" content={`https://oguzkabasakal.com${router.asPath}`} />
+        <link rel="canonical" href={`https://oguzkabasakal.com${router.asPath}`} />
         {meta.date && <meta property="article:published_time" content={meta.date} />}
       </Head>
       <main className="dark:bg-gray-800 w-full">
