@@ -348,7 +348,7 @@ const userData = {
       desc: "Teaching music theory and guitar to middle and high school students in 24 student classrooms as well as private lessons",
     },
   ],
-  resumeUrl: "",
+  resumeUrl: "https://drive.google.com/file/d/1HK_yHw09zytdS7vFxSy1lgLoj5Vn7nQm/view?usp=sharing",
   socialLinks: {
     instagram: "https://instagram.com/mr.kabaskill",
     linkedin: "https://linkedin.com/in/oguzkabasakal",
