@@ -7,7 +7,7 @@
 
 # Pages
 
-I've kept the pages as simple as possible. Only the required sections are included with minimal content.
+The structure is pretty simple but slick.
 
 # Tech Stack
 
