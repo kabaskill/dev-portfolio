@@ -15,7 +15,7 @@ export default function Experience() {
           {userData.experience.map((exp, idx) => (
             <>
               <ExperienceCard
-                key={idx}
+                key={exp.title + idx}
                 title={exp.title}
                 desc={exp.desc}
                 year={exp.year}
@@ -41,12 +41,27 @@ export default function Experience() {
 const ExperienceCard = ({ title, desc, year, company, companyLink }) => {
   return (
     <div className="relative experience-card border p-4 rounded-md shadow-xl bg-white dark:bg-gray-800 z-10 mx-4">
-      <h1 className="absolute -top-10 md:-left-10 md:-top-10 text-4xl text-gray-200 font-bold dark:text-gray-800">
+      <h1 className="absolute -top-10 md:-left-10 md:-top-10 text-4xl text-gray-300 font-bold dark:text-gray-800">
         {year}
       </h1>
       <h1 className="font-semibold text-xl">{title}</h1>
-      <a href={companyLink} className="text-gray-500">
+      <a href={companyLink} className="flex text-gray-500">
         {company}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          className="self-center bi bi-arrow-up-right-square mx-2"
+          stroke="4"
+          strokeWidth="4"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fillRule="evenodd"
+            d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"
+          />
+        </svg>
       </a>
       <p className="text-gray-600 dark:text-gray-400 my-2">{desc}</p>
     </div>
