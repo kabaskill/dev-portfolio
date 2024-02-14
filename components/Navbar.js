@@ -134,7 +134,7 @@ export default function Navbar() {
             className="text-base font-normal text-gray-600 dark:text-gray-300"
             target="_blank"
             aria-label="GitHub"
-            role="img"
+            role="link"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -152,7 +152,7 @@ export default function Navbar() {
             className="text-base font-normal text-gray-600 dark:text-gray-300"
             target="_blank"
             aria-label="Instagram"
-            role="img"
+            role="link"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +171,7 @@ export default function Navbar() {
             className="text-base font-normal text-gray-600 dark:text-gray-300"
             target="_blank"
             aria-label="LinkedIn"
-            role="img"
+            role="link"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
