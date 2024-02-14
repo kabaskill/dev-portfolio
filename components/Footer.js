@@ -13,7 +13,10 @@ export default function Footer() {
           <div>
             <div>
               <div className="inline-block transform hover:scale-110 hover:-rotate-3 transition duration-300">
-                <Link href={`mailto:${userData.email}`} className="hover:bg-red-500 rounded-md px-2 py-1  hover:text-gray-50">
+                <Link
+                  href={`mailto:${userData.email}`}
+                  className="hover:bg-red-500 rounded-md px-2 py-1  hover:text-gray-50"
+                >
                   Oguz Kabasakal
                 </Link>
               </div>
@@ -24,6 +27,8 @@ export default function Footer() {
               href={userData.socialLinks.github}
               className="text-base font-normal text-gray-600 dark:text-gray-300"
               target="_blank"
+              aria-label="GitHub"
+              role="img"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -40,6 +45,8 @@ export default function Footer() {
               href={userData.socialLinks.instagram}
               className="text-base font-normal text-gray-600 dark:text-gray-300"
               target="_blank"
+              aria-label="Instagram"
+              role="img"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -56,6 +63,8 @@ export default function Footer() {
               href={userData.socialLinks.linkedin}
               className="text-base font-normal text-gray-600 dark:text-gray-300"
               target="_blank"
+              aria-label="LinkedIn"
+              role="img"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

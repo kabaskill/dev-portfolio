@@ -133,6 +133,8 @@ export default function Navbar() {
             href={userData.socialLinks.github}
             className="text-base font-normal text-gray-600 dark:text-gray-300"
             target="_blank"
+            aria-label="GitHub"
+            role="img"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -149,6 +151,8 @@ export default function Navbar() {
             href={userData.socialLinks.instagram}
             className="text-base font-normal text-gray-600 dark:text-gray-300"
             target="_blank"
+            aria-label="Instagram"
+            role="img"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -166,6 +170,8 @@ export default function Navbar() {
             href={userData.socialLinks.linkedin}
             className="text-base font-normal text-gray-600 dark:text-gray-300"
             target="_blank"
+            aria-label="LinkedIn"
+            role="img"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
