@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import userData from "@constants/data";
+import Image from "next/image";
 
 export default function FavouriteProjects() {
   return (
@@ -42,7 +43,9 @@ export default function FavouriteProjects() {
             target="_blank"
           >
             <div className="relative overflow-hidden">
-              <img
+              <Image
+                width={1500}
+                height={1000}
                 src="/gamedalf.png"
                 alt="portfolio"
                 className="transform hover:scale-125 transition duration-1000 ease-out"
@@ -61,7 +64,9 @@ export default function FavouriteProjects() {
           >
             <div className="relative overflow-hidden">
               {/* <div className="overlay absolute inset-0 bg-black bg-opacity-70 z-10"></div> */}
-              <img
+              <Image
+                width={1000}
+                height={1000}
                 src="/tourio.png"
                 alt="portfolio"
                 className="transform hover:scale-125 transition duration-1000 ease-out"
@@ -80,8 +85,12 @@ export default function FavouriteProjects() {
           >
             <div className="relative overflow-hidden shadow-2xl">
               {/* <div className="overlay absolute inset-0 bg-black bg-opacity-70 z-10"></div> */}
-              <img
-                src={ `https://img.youtube.com/vi/${userData.projects.sound[0].link.split("v=")[1]}/maxresdefault.jpg`}
+              <Image
+                width={500}
+                height={500}
+                src={`https://img.youtube.com/vi/${
+                  userData.projects.sound[0].link.split("v=")[1]
+                }/maxresdefault.jpg`}
                 alt="portfolio"
                 className="transform hover:scale-125 transition duration-1000 ease-out object-cover shadow-2xl"
               />

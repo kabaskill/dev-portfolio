@@ -1,5 +1,4 @@
 import userData from "@constants/data";
-import React from "react";
 
 export default function Experience() {
   return (
@@ -15,7 +14,7 @@ export default function Experience() {
           {userData.experience.map((exp, idx) => (
             <>
               <ExperienceCard
-                key={exp.title + idx}
+                key={idx}
                 title={exp.title}
                 desc={exp.desc}
                 year={exp.year}

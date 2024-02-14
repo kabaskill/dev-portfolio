@@ -3,6 +3,8 @@ import userData from "@constants/data";
 import { RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Projects() {
   const projects = userData.projects;
@@ -93,15 +95,17 @@ const ProjectCard = ({ title, link, imgUrl, number }) => {
   }
 
   return (
-    <a href={link} className="w-full block shadow-2xl fade-in">
+    <Link href={link} target="_blank" className="w-full block shadow-2xl fade-in">
       <div className="relative overflow-hidden">
         <div className="h-72 object-cover">
-          <img
+          <Image
             src={thumbnailUrl}
             alt={
               isYouTubeLink ? "YouTube Thumbnail" : isVimeoLink ? "Vimeo Thumbnail" : "portfolio"
             }
             className="transform hover:scale-125 transition duration-1000 ease-out object-cover h-full w-full"
+            width={500}
+            height={500}
           />
         </div>
         <h3 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
@@ -111,6 +115,6 @@ const ProjectCard = ({ title, link, imgUrl, number }) => {
           {number.length === 1 ? "0" + number : number}
         </h3>
       </div>
-    </a>
+    </Link>
   );
 };
