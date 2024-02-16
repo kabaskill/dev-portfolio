@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@emailjs/browser@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.npmjs.org/@emailjs/browser/-/browser-4.1.0.tgz"
+  integrity sha512-AWLTmFli2NIKjBXs4Fql1B5z8i3W2r+CKCaxp0DdcFzcIQxrCS2TzmqJtIiPZKh9FpZgqueQTivBx6QOxaz89Q==
+
 "@icons-pack/react-simple-icons@^9.3.0":
   version "9.3.0"
   resolved "https://registry.npmjs.org/@icons-pack/react-simple-icons/-/react-simple-icons-9.3.0.tgz"
