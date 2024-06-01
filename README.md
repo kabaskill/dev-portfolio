@@ -16,6 +16,7 @@ The website is built in my favourite Tech Stack and deployed on [Vercel](https:/
 - [Next.js](https://nextjs.org) for building React Components.
 - [tailwindcss](https://tailwindcss.com) for styling.
 - [React Rough Notation](https://roughnotation.com) for Hero section highlighting.
+- [EmailJS](https://www.emailjs.com/) for handling the contact form.
 - [Vercel](https://vercel.com) for deployments and CI/CD.
 
 # Usage
