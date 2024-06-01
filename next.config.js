@@ -6,7 +6,11 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ["img.youtube.com", "images.unsplash.com"],
+    remotePatterns: [
+      { hostname: "img.youtube.com" },
+      { hostname: "images.unsplash.com" },
+      { hostname: "i.vimeocdn.com" },
+    ],
   },
 
   webpack(config) {
