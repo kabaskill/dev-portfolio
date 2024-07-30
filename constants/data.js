@@ -9,6 +9,11 @@ const userData = {
   projects: {
     dev: [
       {
+        title: "Fugue State - Coming Soon",
+        link: "https://github.com/kabaskill/fugue-state-react",
+        imgUrl: "/FugueState-1.png",
+      },
+      {
         title: "GameDalf",
         link: "https://gamedalf.vercel.app",
         imgUrl: "/gamedalf.png",
@@ -19,23 +24,18 @@ const userData = {
         imgUrl: "/tourio.png",
       },
       {
-        title: "Fugue State - Coming Soon",
-        link: "",
-        imgUrl: "/FugueState-1.png",
-      },
-      {
         title: "Rubby the Duck - TBD",
         link: "https://www.youtube.com/watch?v=tXc_zhsvte8",
         imgUrl: "/tourio.png",
       },
       {
         title: "Unity Demo - Bedroom Guitarist",
-        link: "https://play.unity.com/p/bedroom-guitarist-clicker",
+        link: "https://play.unity.com/en/games/fb8b88f1-7bd2-4f53-a42c-da6188ae5296/bedroom-guitarist-clicker",
         imgUrl: "/made-with-unity.jpg",
       },
       {
-        title: "Unity Demo - Bedroom Guitarist",
-        link: "https://play.unity.com/p/madbirds-1",
+        title: "Unity Demo - Angry Birds Clone",
+        link: "https://play.unity.com/en/games/36fb7d2c-9c59-4df0-82fa-2faaa65e145e/mad-birds",
         imgUrl: "/made-with-unity.jpg",
       },
       {
