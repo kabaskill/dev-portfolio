@@ -1,20 +1,19 @@
+"use client";
 import * as THREE from "three";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
 import { MeshPortalMaterial, Gltf, Text, Preload, PointerLockControls } from "@react-three/drei";
 import { geometry } from "maath";
 import { cn } from "@lib/cn";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 extend(geometry);
 
-// Constants moved to top level
 const MOVEMENT_SPEED = 0.02;
 const SPRINT_MULTIPLIER = 2;
 const COLLISION_THRESHOLD = 1.5;
 const GOLDEN_RATIO = 1.61803398875;
 
-// Separate movement keys configuration
 const MOVEMENT_KEYS = {
   FORWARD: "KeyW",
   BACKWARD: "KeyS",
@@ -23,20 +22,25 @@ const MOVEMENT_KEYS = {
   SPRINT: "ShiftLeft",
 };
 
-export function ThreeScene({ handle3D }) {
+export function ThreeScenePage() {
   const [isLocked, setIsLocked] = useState(false);
   const [isHoveringFrame, setIsHoveringFrame] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
-    <div className=" absolute inset-0">
-      <ControlsOverlay handle3D={handle3D} />
+    <div className=" absolute inset-0 z-10">
+      <ControlsOverlay />
 
-      {/* Dynamic Crosshair */}
       {isLocked && <Crosshair isHoveringFrame={isHoveringFrame} />}
 
       <Canvas flat camera={{ fov: 75, position: [0, 0, 3] }}>
         <color attach="background" args={["#6895b8"]} />
-        <Scene setIsHoveringFrame={setIsHoveringFrame} />
+        <Scene setIsHoveringFrame={setIsHoveringFrame} router={router} />
         <FPSControls setIsLocked={setIsLocked} />
         <Preload all />
       </Canvas>
@@ -44,8 +48,7 @@ export function ThreeScene({ handle3D }) {
   );
 }
 
-function ControlsOverlay({ handle3D }) {
-  const router = useRouter();
+function ControlsOverlay() {
   return (
     <div
       className={cn(
@@ -55,20 +58,10 @@ function ControlsOverlay({ handle3D }) {
         "flex flex-col items-center gap-4"
       )}
     >
-      <p className="text-lg">Click to start</p>
+      <p className="text-lg">Click anywhere to start</p>
       <p className="opacity-75">
         WASD - Move <br /> SHIFT - Sprint <br /> Mouse - Look <br /> ESC - Exit
       </p>
-
-      <button
-        onClick={() => {
-          handle3D();
-          router.push("/");
-        }}
-        className="bg-gray-200 text-gray-800 px-4 py-1 rounded"
-      >
-        Return to Home
-      </button>
     </div>
   );
 }
@@ -97,7 +90,7 @@ function Crosshair({ isHoveringFrame }) {
   );
 }
 
-function Scene({ setIsHoveringFrame }) {
+function Scene({ setIsHoveringFrame, router }) {
   const frames = useRef([]);
 
   const frameProps = useMemo(
@@ -136,6 +129,7 @@ function Scene({ setIsHoveringFrame }) {
           bg="#1a1a1a"
           frames={frames}
           setIsHoveringFrame={setIsHoveringFrame}
+          router={router}
         />
       ))}
     </>
@@ -152,13 +146,16 @@ function Frame({
   children,
   frames,
   setIsHoveringFrame,
+  router,
   ...props
 }) {
   const frameRef = useRef();
   const portal = useRef();
-  const router = useRouter();
-
   const collisionBox = useMemo(() => new THREE.Box3(), []);
+
+  const handleDoubleClick = () => {
+    router.push(`?view=${id}`);
+  };
 
   useEffect(() => {
     if (frameRef.current && frames) {
@@ -168,7 +165,6 @@ function Frame({
         collisionBox,
       });
 
-      // Cleanup function to remove frame reference
       return () => {
         const index = frames.current.findIndex((frame) => frame.id === id);
         if (index !== -1) {
@@ -186,15 +182,17 @@ function Frame({
     }
   });
 
-  // Add user data for collision detection
   useEffect(() => {
     if (frameRef.current) {
       frameRef.current.userData.isFrame = true;
     }
   }, []);
 
+  const currentView =
+    typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("view") : null;
+
   return (
-    <group onDoubleClick={() => router.push(`?view/${id}`)} {...props} ref={frameRef}>
+    <group onDoubleClick={handleDoubleClick} {...props} ref={frameRef}>
       <Text
         fontSize={0.15}
         anchorY="top"
@@ -226,7 +224,7 @@ function Frame({
         onPointerOut={() => setIsHoveringFrame(false)}
       >
         <roundedPlaneGeometry args={[width, height, 0.1]} />
-        <MeshPortalMaterial ref={portal} events={router.query.view === id} side={THREE.DoubleSide}>
+        <MeshPortalMaterial ref={portal} events={currentView === id} side={THREE.DoubleSide}>
           <color attach="background" args={[bg]} />
           {children}
         </MeshPortalMaterial>

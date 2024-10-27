@@ -1,6 +1,7 @@
 import FavouriteProjects from "@components/FavouriteProjects";
 import Hero from "@components/Hero";
 import LatestCode from "@components/LatestCode";
+import { ThreeToggle } from "@components/ThreeToggle";
 import userData from "@constants/data";
 import getLatestRepos from "@lib/getLatestRepos";
 
@@ -10,8 +11,7 @@ async function getGithubRepos() {
 }
 
 export const metadata = {
-  title: "Home",
-  description: "Developing by day, slaying demons by night",
+  title: "Home | Oguz Kabasakal",
 };
 
 export default async function HomePage() {

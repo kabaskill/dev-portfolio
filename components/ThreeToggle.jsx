@@ -1,15 +1,16 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@lib/cn";
 
 export function ThreeToggle() {
   const router = useRouter();
-  const isThreeD = router.pathname === "/three-scene";
+  const pathname = usePathname();
+  const isThreeD = pathname === "/threescene";
 
   return (
     <button
-      onClick={() => router.push(isThreeD ? "/" : "/three-scene")}
+      onClick={() => router.push(isThreeD ? "/" : "/threescene")}
       className={cn(
         "fixed top-2 left-1/2 z-50 transform -translate-x-1/2",
         "px-4 py-1 rounded-md",
@@ -19,7 +20,7 @@ export function ThreeToggle() {
       )}
       aria-label={isThreeD ? "Switch to Classic View" : "Switch to 3D View"}
     >
-      {isThreeD ? "Switch to Classic" : "Switch to 3D Version"}
+      {isThreeD ? "Switch to Classic View" : "Switch to 3D Version"}
     </button>
   );
 }

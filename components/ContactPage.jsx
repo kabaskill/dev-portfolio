@@ -25,8 +25,8 @@ export default function ContactPage() {
   };
 
   return (
-    <section>
-      <div className="max-w-6xl mx-auto h-48 bg-gray-100 dark:bg-gray-800 antialiased">
+    <section className=" bg-white dark:bg-gray-800">
+      <div className="max-w-6xl mx-auto h-48 antialiased">
         <h2 className=" text-5xl md:text-9xl font-bold py-20 text-center md:text-left">Contact</h2>
       </div>
       <div className="relative z-10 rounded-md shadow-md bg-[#02044A] p-4 md:p-10 lg:p-20 max-w-6xl mx-auto mb-20 -mt-4">
