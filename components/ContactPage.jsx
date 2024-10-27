@@ -1,9 +1,10 @@
+"use client";
 import { useRef } from "react";
 import userData from "@constants/data";
 import emailjs from "@emailjs/browser";
 import Link from "next/link";
 
-export default function Contact() {
+export default function ContactPage() {
   const form = useRef();
 
   const sendEmail = (e) => {
