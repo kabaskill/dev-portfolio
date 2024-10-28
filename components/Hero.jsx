@@ -8,10 +8,10 @@ export default function Hero() {
   const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
 
   return (
-    <section className={cn("h-1/2 md:min-h-screen flex flex-col ", "overflow-hidden relative py-2")}>
-      <div className="flex flex-row justify-center items-start w-full">
+    <section className={cn("", "overflow-hidden relative py-2")}>
+      <div className="flex justify-around items-start w-full">
         {/* Text container */}
-        <aside className="w-full md:w-1/2 mx-auto text-center self-start md:text-left lg:p-4">
+        <aside className="w-full md:w-1/2 ext-center  md:text-left lg:p-4">
           <RoughNotationGroup show={true}>
             <RainbowHighlight color={colors[0]}>
               <h2 className="text-4xl md:text-8xl font-bold text-gray-700 dark:text-gray-200 my-2">
@@ -37,33 +37,30 @@ export default function Hero() {
         </aside>
 
         {/* Image container */}
-        <aside className="hidden lg:block relative w-full md:w-1/2 -mr-40 mt-0">
-          <div className="w-3/4">
-            <Image
-              src={userData.avatarUrl}
-              alt="avatar"
-              className="rounded-full shadow"
-              width={768}
-              height={768}
-              priority={true}
-            />
-            <div className="flex flex-row justify-between mt-4">
-              <div className="flex flex-row space-x-2 pl-40">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  className="bi bi-arrow-90deg-up"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
-                  />
-                </svg>
-                <p className="font-mono">That's me</p>
-              </div>
+        <aside className="hidden lg:block relative text-center lg:p-4">
+          <Image
+            src={userData.avatarUrl}
+            alt="avatar"
+            className="rounded-full shadow mx-auto"
+            width={768}
+            height={432}
+          />
+          <div className="flex flex-row justify-between mt-4">
+            <div className="flex flex-row space-x-2 pl-40">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                className="bi bi-arrow-90deg-up"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M4.854 1.146a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L4 2.707V12.5A2.5 2.5 0 0 0 6.5 15h8a.5.5 0 0 0 0-1h-8A1.5 1.5 0 0 1 5 12.5V2.707l3.146 3.147a.5.5 0 1 0 .708-.708l-4-4z"
+                />
+              </svg>
+              <p className="font-mono">That's me</p>
             </div>
           </div>
         </aside>
