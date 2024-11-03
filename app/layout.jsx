@@ -3,7 +3,7 @@ import { Providers } from "./providers";
 import "@styles/globals.css";
 import Navbar from "@components/Navbar";
 import Footer from "@components/Footer";
-import { ThreeToggle } from "@components/ThreeToggle";
+import { ThreeToggle } from "../components/Three/ThreeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +23,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <main id="main" className="min-h-screen">
             <ThreeToggle />
-            <Navbar />
             {children}
-            <Footer />
           </main>
         </Providers>
       </body>

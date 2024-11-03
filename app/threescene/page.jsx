@@ -5,11 +5,11 @@ export const metadata = {
 };
 
 const ThreeScenePage = dynamic(
-  () => import("@components/ThreeScenePage").then((mod) => mod.ThreeScenePage),
+  () => import("@components/Three/ThreeScenePage").then((mod) => mod.ThreeScenePage),
   {
     loading: () => (
       <p
-        className="absolute inset-0 flex items-center justify-center text-4xl text-red-500"
+        className="absolute inset-0 w-full h-full flex items-center justify-center text-4xl"
         role="status"
       >
         Loading 3D Scene...
@@ -20,5 +20,9 @@ const ThreeScenePage = dynamic(
 );
 
 export default function ThreeScene() {
-  return <ThreeScenePage />;
+  return (
+    <section className="absolute inset-0 z-10 w-full h-full ">
+      <ThreeScenePage />
+    </section>
+  );
 }

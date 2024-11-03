@@ -1,6 +1,8 @@
 import FavouriteProjects from "@components/FavouriteProjects";
+import Footer from "@components/Footer";
 import Hero from "@components/Hero";
 import LatestCode from "@components/LatestCode";
+import Navbar from "@components/Navbar";
 import userData from "@constants/data";
 import getLatestRepos from "@lib/getLatestRepos";
 
@@ -18,9 +20,11 @@ export default async function HomePage() {
 
   return (
     <>
+      <Navbar />
       <Hero />
       <FavouriteProjects />
       <LatestCode repositories={repositories} />
+      <Footer />
     </>
   );
 }
