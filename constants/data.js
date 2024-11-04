@@ -31,7 +31,7 @@ const userData = {
       {
         title: "Rubby the Duck - TBD",
         link: "https://www.youtube.com/watch?v=tXc_zhsvte8",
-        imgUrl: "/rubby-the-duck.png",
+        imgUrl: "/rubby-the-duck-min.png",
       },
       {
         title: "Unity Demo - Bedroom Guitarist",
