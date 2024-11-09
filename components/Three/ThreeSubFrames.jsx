@@ -1,4 +1,5 @@
 "use client";
+import { FiExternalLink } from "react-icons/fi";
 import * as THREE from "three";
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
@@ -152,7 +153,7 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
         name={name}
         onPointerOver={(e) => (e.stopPropagation(), hover(true))}
         onPointerOut={() => hover(false)}
-        scale={[GOLDENRATIO, 1, 0.05]}
+        scale={[1, GOLDENRATIO, 0.05]}
         position={[0, GOLDENRATIO / 2, 0]}
       >
         <boxGeometry />
@@ -172,12 +173,12 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
       >
         {name.split("-").join(" ")}
       </Text>
-      {hovered && (
-        <ThreeText position={[-0.55, GOLDENRATIO - 0.2, 0]} scale={0.05} text={props.name} />
-      )}
+
+      <ThreeText position={[0, 0.05, 0.1]} scale={0.05} text={props.name} />
+
       {isActive && (
         <Html
-          position={[-1, GOLDENRATIO / 2, 0]}
+          position={[0, 0.15, 0]}
           center
           style={{
             pointerEvents: "auto",
@@ -188,13 +189,18 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
             target="_blank"
             rel="noopener noreferrer"
             className={cn(
-              "bg-slate-700 min-w-[150px] text-white px-3 py-2 rounded text-sm",
+              "bg-slate-700 w-[200px] text-white px-3 py-2 rounded text-sm",
               "block transition-all hover:bg-slate-900 hover:scale-105",
               "hover:border-2 border-slate-600"
             )}
           >
-            go to content ↗ <br />
-            (opens a new tab)
+            <div className={cn("flex justify-between items-center gap-2")}>
+              <p>
+                go to content <br />
+                (opens a new tab)
+              </p>
+              <FiExternalLink className="text-2xl" />
+            </div>
           </Link>
         </Html>
       )}

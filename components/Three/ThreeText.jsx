@@ -12,7 +12,6 @@ function AnimatedText({ text, position, scale }) {
       scale: scale,
       opacity: 1,
       position: position,
-      color: textRef.current?.material.color,
     },
     from: {
       scale: 0,

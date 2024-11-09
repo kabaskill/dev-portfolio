@@ -1,4 +1,5 @@
 import userData from "@constants/data";
+import { uniqueId } from "@lib/uniqueId";
 
 export default function ExperiencePage() {
   return (
@@ -14,7 +15,7 @@ export default function ExperiencePage() {
           {userData.experience.map((exp, idx) => (
             <>
               <ExperienceCard
-                key={idx}
+                key={() => uniqueId()}
                 title={exp.title}
                 desc={exp.desc}
                 year={exp.year}

@@ -1,3 +1,5 @@
+import Footer from "@components/Footer";
+import Navbar from "@components/Navbar";
 import ProjectsPage from "@components/ProjectsPage";
 
 export const metadata = {
@@ -6,6 +8,10 @@ export const metadata = {
 
 export default function Projects() {
   return (
+    <>
+      <Navbar />
       <ProjectsPage />
+      <Footer />
+    </>
   );
 }

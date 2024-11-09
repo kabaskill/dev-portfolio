@@ -61,24 +61,20 @@ export function ThreeScenePage() {
       <ThreeSubFrames images={imagesIndex} />
 
       <div className="absolute bottom-4 left-1/2 translate-x-[-50%] flex gap-4">
-        <button
-          className={cn("bg-slate-400 py-2 w-[200px]", "hover:bg-slate-600", "focus:bg-red-500 ")}
-          onClick={() => handleButtonClick(0)}
+        <select
+          className={cn(
+            "rounded-sm bg-slate-400 py-2 px-4 w-[200px]",
+            "hover:bg-slate-600",
+            "flex items-center justify-center",
+            "font-sans"
+          )}
+          onChange={(e) => handleButtonClick(e.target.selectedIndex)}
         >
-          Developer
-        </button>
-        <button
-          className={cn("bg-slate-400 py-2 w-[200px]", "hover:bg-slate-600", "focus:bg-red-500 ")}
-          onClick={() => handleButtonClick(1)}
-        >
-          Sound
-        </button>
-        <button
-          className={cn("bg-slate-400 py-2 w-[200px]", "hover:bg-slate-600", "focus:bg-red-500 ")}
-          onClick={() => handleButtonClick(2)}
-        >
-          Music
-        </button>
+          <option>Developer</option>
+          <option>Sound</option>
+          <option>Music</option>
+          <option disabled>Select a Category</option>
+        </select>
       </div>
 
       {/* <ThreeControlsOverlay
