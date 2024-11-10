@@ -1,6 +1,7 @@
 import Link from "next/link";
 import userData from "@constants/data";
 import Image from "next/image";
+import { favProjects } from "@constants/data";
 
 export default function FavouriteProjects() {
   return (
@@ -37,7 +38,7 @@ export default function FavouriteProjects() {
         <div className="grid md:grid-cols-3 gap-8 lg:-mt-8 pb-40">
           {/* Single card */}
           <Link
-            href="https://gamedalf.vercel.app"
+            href={favProjects[0].link}
             className="w-full block col-span-3 shadow-2xl"
             target="_blank"
           >
@@ -45,19 +46,21 @@ export default function FavouriteProjects() {
               <Image
                 width={1500}
                 height={1000}
-                src="/gamedalf.png"
+                src={favProjects[0].imgUrl}
                 alt="portfolio"
                 className="transform hover:scale-125 transition duration-1000 ease-out"
               />
-              <h3 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
-                GameDalf
+              <h3 className="absolute top-6 left-6 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
+                {favProjects[0].title}
               </h3>
-              <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">01</h1>
+              <h1 className="absolute bottom-6 left-6 bg-red-500 rounded-md px-2 text-gray-50 font-bold text-xl">
+                01
+              </h1>
             </div>
           </Link>
           {/* Single card */}
           <Link
-            href="https://tourio-travel-app-rho.vercel.app"
+            href={favProjects[1].link}
             className="w-full block col-span-3  sm:col-span-2 shadow-2xl"
             target="_blank"
           >
@@ -66,14 +69,16 @@ export default function FavouriteProjects() {
               <Image
                 width={1000}
                 height={1000}
-                src="/tourio.png"
+                src={favProjects[1].imgUrl}
                 alt="portfolio"
                 className="transform hover:scale-125 transition duration-1000 ease-out"
               />
-              <h3 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
-                Tourio
+              <h3 className="absolute top-6 left-6 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
+                {favProjects[1].title}
               </h3>
-              <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">02</h1>
+              <h1 className="absolute bottom-6 left-6 bg-red-500 rounded-md px-2 text-gray-50 font-bold text-xl">
+                02
+              </h1>
             </div>
           </Link>
           {/* Single card */}
@@ -87,16 +92,21 @@ export default function FavouriteProjects() {
               <Image
                 width={500}
                 height={500}
-                src={`https://img.youtube.com/vi/${
-                  userData.projects.sound[0].link.split("v=")[1]
-                }/maxresdefault.jpg`}
+                src={
+                  favProjects[2].imgUrl ||
+                  `https://img.youtube.com/vi/${
+                    favProjects[2].link.split("v=")[1]
+                  }/maxresdefault.jpg`
+                }
                 alt="portfolio"
                 className="transform hover:scale-125 transition duration-1000 ease-out object-cover shadow-2xl"
               />
-              <h3 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
-                Showreel
+              <h3 className="absolute top-6 left-6 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
+                {favProjects[2].title}
               </h3>
-              <h1 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl ">03</h1>
+              <h1 className="absolute bottom-6 left-6 bg-red-500 rounded-md px-2 text-gray-50 font-bold text-xl ">
+                03
+              </h1>
             </div>
           </Link>
         </div>

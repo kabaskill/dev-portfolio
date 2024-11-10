@@ -14,7 +14,7 @@ const userData = {
         imgUrl: "/fw-banner.png",
       },
       {
-        title: "Fugue State - Coming Soon",
+        title: "Fugue State",
         link: "https://github.com/kabaskill/fugue-state-react",
         imgUrl: "/FugueState-1.png",
       },
@@ -372,3 +372,16 @@ const userData = {
 };
 
 export default userData;
+
+const allProjects = [
+  ...userData.projects.dev,
+  ...userData.projects.sound,
+  ...userData.projects.music,
+];
+
+export const favProjects = allProjects.filter(
+  (project) =>
+    project.title === "Fugue State" ||
+    project.title === "Formenwerkstatt Website" ||
+    project.title === "Showreel"
+);

@@ -9,9 +9,9 @@ export default function Hero() {
 
   return (
     <section className={cn("", "overflow-hidden relative py-2")}>
-      <div className="flex justify-around items-start w-full">
+      <div className="flex justify-around items-start w-4/5 mx-auto">
         {/* Text container */}
-        <aside className="w-full md:w-1/2 ext-center  md:text-left lg:p-4">
+        <aside className="w-full md:w-3/4 ext-center  md:text-left lg:p-4">
           <RoughNotationGroup show={true}>
             <RainbowHighlight color={colors[0]}>
               <h2 className="text-4xl md:text-8xl font-bold text-gray-700 dark:text-gray-200 my-2">
