@@ -79,39 +79,22 @@ export default function ProjectsPage() {
 }
 
 const ProjectCard = ({ title, link, imgUrl, number }) => {
-  const isYouTubeLink = link.includes("youtube.com");
-  const isVimeoLink = link.includes("vimeo.com");
-
-  let thumbnailUrl;
-
-  if (isYouTubeLink) {
-    thumbnailUrl = `https://img.youtube.com/vi/${link.split("v=")[1]}/maxresdefault.jpg`;
-  } else if (isVimeoLink) {
-    // Extract Vimeo video ID from the link
-    const vimeoVideoId = link.split("/").pop();
-    thumbnailUrl = `https://i.vimeocdn.com/video/${vimeoVideoId}_640.jpg`; // Use a valid size (e.g., 640) for Vimeo thumbnails
-  } else {
-    thumbnailUrl = imgUrl;
-  }
-
   return (
     <Link href={link} target="_blank" className="w-full block shadow-2xl fade-in">
       <div className="relative overflow-hidden">
         <div className="h-72 object-cover">
           <Image
-            src={thumbnailUrl}
-            alt={
-              isYouTubeLink ? "YouTube Thumbnail" : isVimeoLink ? "Vimeo Thumbnail" : "portfolio"
-            }
+            src={imgUrl}
+            alt={"portfolio" + number}
             className="transform hover:scale-125 transition duration-1000 ease-out object-cover h-full w-full"
             width={500}
             height={500}
           />
         </div>
-        <h3 className="absolute top-10 left-10 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
+        <h3 className="absolute top-6 left-6 text-gray-50 font-bold text-xl bg-red-500 rounded-md px-2">
           {title}
         </h3>
-        <h3 className="absolute bottom-10 left-10 text-gray-50 font-bold text-xl">
+        <h3 className="absolute bottom-6 left-6 bg-red-500 rounded-md px-2 text-gray-50 font-bold text-xl">
           {number.length === 1 ? "0" + number : number}
         </h3>
       </div>

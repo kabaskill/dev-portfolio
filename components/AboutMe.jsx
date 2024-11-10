@@ -5,8 +5,8 @@ import TechStack from "./TechStack";
 
 export default function AboutMe() {
     return (
-        <section className="bg-white dark:bg-gray-800">
-            <div className="max-w-6xl mx-auto h-48 bg-white dark:bg-gray-800">
+        <section className="bg-gray-100 dark:bg-gray-800">
+            <div className="max-w-6xl mx-auto h-48 bg-gray-100 dark:bg-gray-800">
                 <h2 className=" text-5xl md:text-9xl font-bold py-20 text-center md:text-left">
                     About Me
                 </h2>
@@ -25,7 +25,7 @@ export default function AboutMe() {
                     >
                         Currently working on{" "}
                         <Link
-                            className="bg-red-500 rounded-md px-2 py-1 text-white"
+                            className="bg-red-500 rounded-md px-2 py-1 text-gray-100"
                             href={userData.about.currentProjectUrl}
                             target="_blank"
                         >

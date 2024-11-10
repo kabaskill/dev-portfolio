@@ -25,11 +25,11 @@ export default function ContactPage() {
   };
 
   return (
-    <section className=" bg-white dark:bg-gray-800">
+    <section className=" bg-gray-100 dark:bg-gray-800">
       <div className="max-w-6xl mx-auto h-48 antialiased">
         <h2 className=" text-5xl md:text-9xl font-bold py-20 text-center md:text-left">Contact</h2>
       </div>
-      <div className="relative z-10 rounded-md shadow-md bg-[#02044A] p-4 md:p-10 lg:p-20 max-w-6xl mx-auto mb-20 -mt-4">
+      <div className="relative z-10 rounded-md shadow-md bg-slate-700 p-4 md:p-10 lg:p-20 max-w-6xl mx-auto mb-20 -mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div className="md:ml-4">
             <header className="">
@@ -39,7 +39,7 @@ export default function ContactPage() {
               </p>
             </header>
             <div className="icons-container inline-flex flex-col my-20">
-              <div className="flex flex-row items-center space-x-6 rounded-md border border-[#02044A] hover:border hover:border-blue-500 p-4">
+              <div className="flex flex-row items-center space-x-6 rounded-md border border-slate-700 hover:border hover:border-blue-500 p-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 </svg>
                 <p className="text-gray-50 font-light text-sm">{userData.phone}</p>
               </div>
-              <div className="flex flex-row items-center space-x-6 rounded-md border border-[#02044A] hover:border hover:border-blue-500 p-4">
+              <div className="flex flex-row items-center space-x-6 rounded-md border border-slate-700 hover:border hover:border-blue-500 p-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -68,7 +68,7 @@ export default function ContactPage() {
                 </svg>
                 <p className="text-gray-50 font-light text-sm">{userData.email}</p>
               </div>
-              <div className="flex flex-row items-center space-x-6 rounded-md border border-[#02044A] hover:border hover:border-blue-500 p-4">
+              <div className="flex flex-row items-center space-x-6 rounded-md border border-slate-700 hover:border hover:border-blue-500 p-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -156,31 +156,31 @@ export default function ContactPage() {
           <form
             ref={form}
             onSubmit={sendEmail}
-            className="form rounded-lg bg-gray-800 dark:bg-gray-100 p-4 flex flex-col"
+            className="form rounded-lg bg-gray-600 dark:bg-gray-500 p-4 flex flex-col"
           >
-            <label htmlFor="name" className="text-sm text-gray-600 mx-4">
+            <label htmlFor="name" className="text-sm text-gray-100 mx-4">
               Your Name
             </label>
             <input
               type="text"
-              className="font-light rounded-md border focus:outline-none py-2 mt-2 px-1 mx-4 focus:ring-2 focus:border-none ring-blue-500 dark:bg-gray-500"
+              className="font-light rounded-md border focus:outline-none py-2 mt-2 px-1 mx-4 focus:ring-2 focus:border-none ring-blue-500 dark:bg-gray-300"
               name="name"
             />
-            <label htmlFor="email" className="text-sm text-gray-600 mx-4 mt-4">
+            <label htmlFor="email" className="text-sm text-gray-100 mx-4 mt-4">
               Email
             </label>
             <input
               type="text"
-              className="font-light rounded-md border focus:outline-none py-2 mt-2 px-1 mx-4 focus:ring-2 focus:border-none ring-blue-500 dark:bg-gray-500"
+              className="font-light rounded-md border focus:outline-none py-2 mt-2 px-1 mx-4 focus:ring-2 focus:border-none ring-blue-500 dark:bg-gray-300"
               name="email"
             />
-            <label htmlFor="message" className="text-sm text-gray-600 mx-4 mt-4">
+            <label htmlFor="message" className="text-sm text-gray-100 mx-4 mt-4">
               Message
             </label>
             <textarea
               rows="4"
               type="text"
-              className="font-light rounded-md border focus:outline-none py-2 mt-2 px-1 mx-4 focus:ring-2 focus:border-none ring-blue-500 dark:bg-gray-500"
+              className="font-light rounded-md border focus:outline-none py-2 mt-2 px-1 mx-4 focus:ring-2 focus:border-none ring-blue-500 dark:bg-gray-300"
               name="message"
             ></textarea>
             <input

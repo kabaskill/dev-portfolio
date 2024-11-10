@@ -5,7 +5,7 @@ export default function ThreeControlsOverlay({ isFPSControlsActive, handleContro
     <div
       className={cn(
         "absolute top-4 right-4 z-50 transform",
-        "bg-black/50 text-white",
+        "bg-black/50 text-gray-100",
         "px-6 py-4 rounded-lg",
         "flex flex-col items-center gap-4"
       )}

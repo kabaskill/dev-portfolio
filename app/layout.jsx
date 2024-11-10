@@ -1,8 +1,6 @@
+import "@styles/globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
-import "@styles/globals.css";
-import Navbar from "@components/Navbar";
-import Footer from "@components/Footer";
 import { ThreeToggle } from "../components/Three/ThreeToggle";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -19,7 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} dark:bg-gray-800 w-full`}>
+      <body
+        className={`${inter.className} dark:bg-gray-800 text-gray-800 dark:text-gray-100 w-full`}
+      >
         <Providers>
           <main id="main" className="min-h-screen">
             <ThreeToggle />
