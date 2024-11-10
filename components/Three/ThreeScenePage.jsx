@@ -13,6 +13,7 @@ import ThreeBackButton from "./ThreeBackButton";
 import { categories } from "@constants/frames";
 import { ThreeSubFrames } from "./ThreeSubFrames";
 import { cn } from "@lib/cn";
+import WelcomeScreen from "./WelcomeScreen";
 
 const BG_COLOR = "#75ade6";
 
@@ -25,7 +26,8 @@ export function ThreeScenePage() {
   // const [isFPSControlsActive, setIsFPSControlsActive] = useState(false);
   const [activeControls, setActiveControls] = useState("orbit");
 
-  const [imagesIndex, setImagesIndex] = useState(categories[0].subFrames);
+  const [imagesArray, setImagesArray] = useState(categories[0].subFrames);
+  const [isWelcome, setIsWelcome] = useState(true);
 
   function handleControlsToggle(event) {
     event.stopPropagation();
@@ -53,27 +55,28 @@ export function ThreeScenePage() {
   // }, []);
 
   function handleButtonClick(index) {
-    setImagesIndex(categories[index].subFrames);
+    setImagesArray(categories[index].subFrames);
   }
 
   return (
     <div className="absolute inset-0 z-10">
-      <ThreeSubFrames images={imagesIndex} />
+      <WelcomeScreen isWelcome={isWelcome} setIsWelcome={setIsWelcome} />
 
-      <div className="absolute bottom-4 left-1/2 translate-x-[-50%] flex gap-4">
+      <ThreeSubFrames images={imagesArray} />
+
+      <div className="absolute top-12 left-1/2 translate-x-[-50%] flex gap-4">
         <select
           className={cn(
-            "rounded-sm bg-slate-400 py-2 px-4 w-[200px]",
+            "rounded-md bg-slate-400 py-2 px-4 w-[200px]",
             "hover:bg-slate-600",
             "flex items-center justify-center",
-            "font-sans"
+            "font-sans text-gray-100"
           )}
           onChange={(e) => handleButtonClick(e.target.selectedIndex)}
         >
           <option>Developer</option>
           <option>Sound</option>
           <option>Music</option>
-          <option disabled>Select a Category</option>
         </select>
       </div>
 
