@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.oguzkabasakal.com
+Host: https://oguzkabasakal.com
 
 # Sitemaps
-Sitemap: https://www.oguzkabasakal.com/sitemap.xml
+Sitemap: https://oguzkabasakal.com/sitemap.xml

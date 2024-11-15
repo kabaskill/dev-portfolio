@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://www.oguzkabasakal.com", // Your website URL
+  siteUrl: "https://oguzkabasakal.com", // Your website URL
   generateRobotsTxt: true, // Generate a robots.txt file
   changefreq: "daily",
   priority: 0.7,
@@ -16,5 +16,5 @@ module.exports = {
 
 const fetchDynamicPaths = async () => {
   const dynamicData = ["/about", "/contact", "/projects", "/experience", "/threescene"];
-  return dynamicData.map((slug) => `https://www.oguzkabasakal.com${slug}`);
+  return dynamicData.map((slug) => `https://oguzkabasakal.com${slug}`);
 };
