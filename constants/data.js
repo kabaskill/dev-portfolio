@@ -10,7 +10,7 @@ const userData = {
     dev: [
       {
         title: "Formenwerkstatt Website",
-        link: "https://frormenwerkstatt.de",
+        link: "https://formenwerkstatt.de",
         imgUrl: "/fw-banner.png",
       },
       {

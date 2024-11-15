@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.oguzkabasakal.com
+
+# Sitemaps
+Sitemap: https://www.oguzkabasakal.com/sitemap.xml
