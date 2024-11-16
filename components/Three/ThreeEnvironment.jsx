@@ -6,15 +6,14 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { useCursor, MeshReflectorMaterial, Image, Text, Environment, OrbitControls, KeyboardControls, Html } from "@react-three/drei"; /* prettier-ignore */
 import { easing } from "maath";
 import getUuid from "uuid-by-string";
-import { RigControls } from "./ThreeControls";
 import ThreeText from "./ThreeText";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Controller from "ecctrl";
-import { Box } from "./MainScene";
 import Link from "next/link";
 import { cn } from "@lib/cn";
 
 const GOLDENRATIO = 1.61803398875;
+const TRANSITION_DURATION = 0.7;
 const MAP = [
   { name: "forward", keys: ["ArrowUp", "KeyW"] },
   { name: "backward", keys: ["ArrowDown", "KeyS"] },
@@ -23,24 +22,22 @@ const MAP = [
   { name: "jump", keys: ["Space"] },
   { name: "run", keys: ["Shift"] },
 ];
-export function ThreeSubFrames({ images }) {
-  // const ref = useRef();
+export function ThreeEnvironment({ images }) {
   const controlsRef = useRef();
-
   const [selectedId, setSelectedId] = useState(null);
 
   return (
     <Canvas
       dpr={[1, 1.5]}
-      camera={{ fov: 75, position: [0, 0.5, 3] }}
-      // key={JSON.stringify(images)} // FOR RESETTING - REMOVE IN FUTURE
-      // onPointerDown={(e) => {
-      //   e.target.requestPointerLock();
-      // }}
+      camera={{
+        position: [0, 20, 5],
+        fov: 75,
+      }}
     >
       <color attach="background" args={["#191920"]} />
       <fog attach="fog" args={["#191920", 0, 15]} />
-      <group position={[0, -0.5, 0]}>
+
+      <group position={[0, -1, 0]}>
         <Frames
           images={images}
           selectedId={selectedId}
@@ -73,14 +70,15 @@ export function ThreeSubFrames({ images }) {
         minPolarAngle={Math.PI / 3}
         maxPolarAngle={Math.PI / 1.5}
         minDistance={1}
-        maxDistance={5}
+        maxDistance={8}
         zoomSpeed={0.6}
         screenSpacePanning={false}
-        panSpeed={3}
+        panSpeed={4}
         makeDefault
       />
 
       {/* <Physics timeStep="vary">
+       
         <KeyboardControls map={MAP}>
           <Controller
             camCollision={false} // disable camera collision detect (useless in FP mode)
@@ -95,7 +93,7 @@ export function ThreeSubFrames({ images }) {
         </KeyboardControls>
 
         <RigidBody type="fixed" colliders="trimesh">
-          <mesh ref={ref} position={[0, -1, 0]} rotation={[Math.PI / 2, 0, 0]}>
+          <mesh ref={controlsRef} position={[0, -1, 0]} rotation={[Math.PI / 2, 0, 0]}>
             <planeGeometry args={[100, 100]} />
             <meshBasicMaterial color="white" opacity={1} transparent />
           </mesh>
@@ -105,74 +103,83 @@ export function ThreeSubFrames({ images }) {
   );
 }
 
-function Frames({
-  images,
-  selectedId,
-  setSelectedId,
-  controlsRef,
-  q = new THREE.Quaternion(),
-  p = new THREE.Vector3(),
-}) {
+function Frames({ images, selectedId, setSelectedId, controlsRef }) {
   const ref = useRef();
   const clicked = useRef();
   const { camera } = useThree();
-
-  const cameraState = useRef({
-    position: new THREE.Vector3(),
-    target: new THREE.Vector3(),
-    quaternion: new THREE.Quaternion(),
-    frameQuaternion: new THREE.Quaternion(),
-    isStored: false,
-    isTransitioning: false,
+  const transitionRef = useRef({
+    active: false,
+    startTime: 0,
+    startPos: new THREE.Vector3(),
+    startQuat: new THREE.Quaternion(),
+    targetPos: new THREE.Vector3(),
+    targetQuat: new THREE.Quaternion(),
+    initialControlsTarget: new THREE.Vector3(),
+    originalPos: new THREE.Vector3(),
+    originalQuat: new THREE.Quaternion(),
+    hasStoredOriginal: false,
   });
+
   useEffect(() => {
     clicked.current = ref.current.getObjectByName(selectedId);
+    const transition = transitionRef.current;
 
     if (clicked.current) {
-      if (controlsRef.current && !cameraState.current.isStored) {
-        cameraState.current.position.copy(camera.position);
-        cameraState.current.target.copy(controlsRef.current.target);
-        cameraState.current.quaternion.copy(camera.quaternion);
-        cameraState.current.isStored = true;
+      if (!transition.hasStoredOriginal) {
+        transition.originalPos.copy(camera.position);
+        transition.originalQuat.copy(camera.quaternion);
+        transition.hasStoredOriginal = true;
+      }
+
+      transition.startPos.copy(camera.position);
+      transition.startQuat.copy(camera.quaternion);
+
+      if (controlsRef.current) {
+        transition.initialControlsTarget.copy(controlsRef.current.target);
+        controlsRef.current.enabled = false;
       }
 
       clicked.current.parent.updateWorldMatrix(true, true);
-      clicked.current.parent.localToWorld(p.set(0, GOLDENRATIO / 2, 1.25));
-      clicked.current.parent.getWorldQuaternion(q);
+      transition.targetPos.set(0, GOLDENRATIO / 2, 1.25);
+      clicked.current.parent.localToWorld(transition.targetPos);
+      clicked.current.parent.getWorldQuaternion(transition.targetQuat);
+    } else if (transition.hasStoredOriginal) {
+      transition.startPos.copy(camera.position);
+      transition.startQuat.copy(camera.quaternion);
 
-      cameraState.current.frameQuaternion.copy(q);
-      cameraState.current.isTransitioning = true;
-    } else if (cameraState.current.isStored) {
-      p.copy(cameraState.current.position);
-      q.copy(cameraState.current.frameQuaternion).slerp(cameraState.current.quaternion, 1);
+      transition.targetPos.copy(transition.originalPos);
+      transition.targetQuat.copy(transition.originalQuat);
 
       if (controlsRef.current) {
-        controlsRef.current.target.copy(cameraState.current.target);
+        controlsRef.current.target.copy(transition.initialControlsTarget);
       }
-
-      cameraState.current.isTransitioning = true;
-
-      // Reset storage after transition
-      setTimeout(() => {
-        cameraState.current.isStored = false;
-        cameraState.current.isTransitioning = false;
-
-        // Re-enable OrbitControls after transition completes
-        if (controlsRef.current) {
-          controlsRef.current.enabled = true;
-        }
-      }, 1500);
     }
 
-    if (controlsRef.current) {
-      controlsRef.current.enabled = !selectedId && !cameraState.current.isTransitioning;
-    }
-  }, [selectedId]);
+    transition.active = true;
+    transition.startTime = 0;
+  }, [selectedId, camera]);
 
   useFrame((state, dt) => {
-    if (selectedId || cameraState.current.isTransitioning) {
-      easing.damp3(state.camera.position, p, 0.4, dt);
-      easing.dampQ(state.camera.quaternion, q, 0.4, dt);
+    const transition = transitionRef.current;
+
+    if (transition.active) {
+      transition.startTime += dt;
+      const progress = Math.min(transition.startTime / TRANSITION_DURATION, 1);
+
+      state.camera.position.lerpVectors(transition.startPos, transition.targetPos, progress);
+      state.camera.quaternion.slerpQuaternions(
+        transition.startQuat,
+        transition.targetQuat,
+        progress
+      );
+
+      if (progress === 1) {
+        transition.active = false;
+        if (!selectedId && controlsRef.current) {
+          controlsRef.current.enabled = true;
+          transition.hasStoredOriginal = false;
+        }
+      }
     }
   });
 
@@ -181,9 +188,11 @@ function Frames({
       ref={ref}
       onClick={(e) => {
         e.stopPropagation();
-        setSelectedId(clicked.current === e.object ? null : e.object.name);
+        if (!transitionRef.current.active) {
+          setSelectedId(clicked.current === e.object ? null : e.object.name);
+        }
       }}
-      onPointerMissed={() => setSelectedId(null)}
+      onPointerMissed={() => !transitionRef.current.active && setSelectedId(null)}
     >
       {images.map((props) => (
         <Frame key={props.name} selectedId={selectedId} {...props} url={props.url} />
@@ -244,16 +253,17 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
 
       {isActive && (
         <Html
-          position={[0, 0.15, 0]}
+          position={[0, 0.2, 0.1]}
           center
-          style={{
-            pointerEvents: "auto",
-          }}
+          // style={{
+          //   pointerEvents: "auto",
+          // }}
         >
-          <Link
-            href={props.link}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={(event) => {
+              event.stopPropagation();
+              window.open(props.link, "_blank");
+            }}
             className={cn(
               "bg-slate-700 w-[200px] text-white px-3 py-2 rounded text-sm",
               "block transition-all hover:bg-slate-900 hover:scale-105",
@@ -267,7 +277,7 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
               </p>
               <FiExternalLink className="text-2xl" />
             </div>
-          </Link>
+          </button>
         </Html>
       )}
     </group>
