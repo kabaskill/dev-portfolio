@@ -1,5 +1,4 @@
 "use client";
-import { FiExternalLink } from "react-icons/fi";
 import * as THREE from "three";
 import { useEffect, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
@@ -9,8 +8,6 @@ import getUuid from "uuid-by-string";
 import ThreeText from "./ThreeText";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Controller from "ecctrl";
-import Link from "next/link";
-import { cn } from "@lib/cn";
 
 const GOLDENRATIO = 1.61803398875;
 const TRANSITION_DURATION = 0.7;
@@ -30,7 +27,7 @@ export function ThreeEnvironment({ images }) {
     <Canvas
       dpr={[1, 1.5]}
       camera={{
-        position: [0, 20, 5],
+        position: [0, 2, 5],
         fov: 75,
       }}
     >
@@ -102,7 +99,6 @@ export function ThreeEnvironment({ images }) {
     </Canvas>
   );
 }
-
 function Frames({ images, selectedId, setSelectedId, controlsRef }) {
   const ref = useRef();
   const clicked = useRef();
@@ -139,10 +135,10 @@ function Frames({ images, selectedId, setSelectedId, controlsRef }) {
         controlsRef.current.enabled = false;
       }
 
-      clicked.current.parent.updateWorldMatrix(true, true);
+      clicked.current.parent.parent.updateWorldMatrix(true, true);
       transition.targetPos.set(0, GOLDENRATIO / 2, 1.25);
-      clicked.current.parent.localToWorld(transition.targetPos);
-      clicked.current.parent.getWorldQuaternion(transition.targetQuat);
+      clicked.current.parent.parent.localToWorld(transition.targetPos);
+      clicked.current.parent.parent.getWorldQuaternion(transition.targetQuat);
     } else if (transition.hasStoredOriginal) {
       transition.startPos.copy(camera.position);
       transition.startQuat.copy(camera.quaternion);
@@ -189,13 +185,17 @@ function Frames({ images, selectedId, setSelectedId, controlsRef }) {
       onClick={(e) => {
         e.stopPropagation();
         if (!transitionRef.current.active) {
-          setSelectedId(clicked.current === e.object ? null : e.object.name);
+          if (selectedId === e.object.name) {
+            window.open(e.object.parent.parent.link, "_blank"); // Updated to account for nested group
+          } else {
+            setSelectedId(clicked.current === e.object ? null : e.object.name);
+          }
         }
       }}
       onPointerMissed={() => !transitionRef.current.active && setSelectedId(null)}
     >
-      {images.map((props) => (
-        <Frame key={props.name} selectedId={selectedId} {...props} url={props.url} />
+      {images.map((props, index) => (
+        <Frame key={props.name} selectedId={selectedId} {...props} url={props.url} index={index} />
       ))}
     </group>
   );
@@ -204,14 +204,42 @@ function Frames({ images, selectedId, setSelectedId, controlsRef }) {
 function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
   const image = useRef();
   const frame = useRef();
+  const group = useRef();
   const [hovered, hover] = useState(false);
   const [rnd] = useState(() => Math.random());
   const name = getUuid(props.name);
   const isActive = selectedId === name;
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setMounted(true), props.index * 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   useCursor(hovered);
 
   useFrame((state, dt) => {
+    if (!group.current) return;
+
+    // Handle mounting animation
+    const targetOpacity = mounted ? 1 : 0;
+    const targetY = mounted ? 0 : GOLDENRATIO/2; 
+
+    // Animate opacity
+    if (frame.current.material.opacity !== targetOpacity) {
+      frame.current.material.opacity = THREE.MathUtils.lerp(
+        frame.current.material.opacity,
+        targetOpacity,
+        0.01
+      );
+      image.current.material.opacity = frame.current.material.opacity;
+    }
+
+    // Animate position
+    group.current.position.y = THREE.MathUtils.lerp(group.current.position.y, targetY, 0.01);
+
+    // Existing animations
     image.current.material.zoom = 1 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) / 4;
     easing.damp3(
       image.current.scale,
@@ -219,67 +247,61 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
       0.1,
       dt
     );
-    easing.dampC(frame.current.material.color, hovered ? "orange" : "white", 0.1, dt);
+    easing.dampC(frame.current.material.color, hovered ? "skyblue" : "white", 0.1, dt);
   });
 
   return (
     <group {...props}>
-      <mesh
-        name={name}
-        onPointerOver={(e) => (e.stopPropagation(), hover(true))}
-        onPointerOut={() => hover(false)}
-        scale={[1, GOLDENRATIO, 0.05]}
-        position={[0, GOLDENRATIO / 2, 0]}
-      >
-        <boxGeometry />
-        <meshStandardMaterial color="#151515" metalness={0.5} roughness={0.5} envMapIntensity={2} />
-        <mesh ref={frame} raycast={() => null} scale={[0.9, 0.93, 0.9]} position={[0, 0, 0.2]}>
-          <boxGeometry />
-          <meshBasicMaterial toneMapped={false} fog={false} />
-        </mesh>
-        <Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
-      </mesh>
-      <Text
-        maxWidth={0.1}
-        anchorX="left"
-        anchorY="top"
-        position={[0.55, GOLDENRATIO, 0]}
-        fontSize={0.025}
-      >
-        {name.split("-").join(" ")}
-      </Text>
-
-      <ThreeText position={[0, 0.05, 0.1]} scale={0.05} text={props.name} />
-
-      {isActive && (
-        <Html
-          position={[0, 0.2, 0.1]}
-          center
-          // style={{
-          //   pointerEvents: "auto",
-          // }}
+      <group ref={group} position-y={-0.5}>
+        <mesh
+          name={name}
+          onPointerOver={(e) => {
+            e.stopPropagation();
+            hover(true);
+          }}
+          onPointerOut={(e) => {
+            e.stopPropagation();
+            hover(false);
+          }}
+          scale={[1, GOLDENRATIO, 0.05]}
+          position={[0, GOLDENRATIO / 2, 0]} // Keep the original position
         >
-          <button
-            onClick={(event) => {
-              event.stopPropagation();
-              window.open(props.link, "_blank");
-            }}
-            className={cn(
-              "bg-slate-700 w-[200px] text-white px-3 py-2 rounded text-sm",
-              "block transition-all hover:bg-slate-900 hover:scale-105",
-              "hover:border-2 border-slate-600"
-            )}
-          >
-            <div className={cn("flex justify-between items-center gap-2")}>
-              <p>
-                go to content <br />
-                (opens a new tab)
-              </p>
-              <FiExternalLink className="text-2xl" />
-            </div>
-          </button>
-        </Html>
-      )}
+          <boxGeometry />
+          <meshStandardMaterial
+            color="#151515"
+            metalness={0.5}
+            roughness={0.5}
+            envMapIntensity={2}
+          />
+          <mesh ref={frame} raycast={() => null} scale={[0.9, 0.93, 0.9]} position={[0, 0, 0.2]}>
+            <boxGeometry />
+            <meshBasicMaterial toneMapped={false} fog={false} transparent opacity={0} />
+          </mesh>
+          <Image
+            raycast={() => null}
+            ref={image}
+            position={[0, 0, 0.7]}
+            url={url}
+            transparent
+            opacity={0}
+          />
+        </mesh>
+        <Text
+          maxWidth={0.1}
+          anchorX="left"
+          anchorY="top"
+          position={[0.55, GOLDENRATIO, 0]} // Adjusted position to align with frame
+          fontSize={0.025}
+        >
+          {name.split("-").join(" ")}
+        </Text>
+
+        <ThreeText
+          position={[0, 0.05, 0.1]}
+          scale={0.05}
+          text={`${isActive && hovered ? "Click to open" : props.name}`}
+        />
+      </group>
     </group>
   );
 }

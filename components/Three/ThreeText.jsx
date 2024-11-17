@@ -12,12 +12,13 @@ function AnimatedText({ text, position, scale }) {
       scale: scale,
       opacity: 1,
       position: position,
+      color: "#000",
     },
     from: {
       scale: 0,
       opacity: 0,
       position: [0, 0, 0],
-      color: "#fff",
+      color: "#bbb",
     },
     config: {
       mass: 2,
