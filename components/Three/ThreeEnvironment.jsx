@@ -8,6 +8,7 @@ import getUuid from "uuid-by-string";
 import ThreeText from "./ThreeText";
 import { Physics, RigidBody } from "@react-three/rapier";
 import Controller from "ecctrl";
+import AudioPlayer from "./AudioPlayer";
 
 const GOLDENRATIO = 1.61803398875;
 const TRANSITION_DURATION = 0.7;
@@ -31,6 +32,13 @@ export function ThreeEnvironment({ images }) {
         fov: 75,
       }}
     >
+      <AudioPlayer
+        url="/audio/win95_startup.mp3"
+        position={[0, -0.95, 0]}
+        playOnMount={true}
+        volume={0.7}
+      />
+
       <color attach="background" args={["#191920"]} />
       <fog attach="fog" args={["#191920", 0, 15]} />
 
@@ -57,6 +65,7 @@ export function ThreeEnvironment({ images }) {
           />
         </mesh>
       </group>
+
       <Environment preset="city" />
 
       <OrbitControls
@@ -186,7 +195,7 @@ function Frames({ images, selectedId, setSelectedId, controlsRef }) {
         e.stopPropagation();
         if (!transitionRef.current.active) {
           if (selectedId === e.object.name) {
-            window.open(e.object.parent.parent.link, "_blank"); // Updated to account for nested group
+            window.open(e.object.parent.parent.link, "_blank");
           } else {
             setSelectedId(clicked.current === e.object ? null : e.object.name);
           }
@@ -224,7 +233,7 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
 
     // Handle mounting animation
     const targetOpacity = mounted ? 1 : 0;
-    const targetY = mounted ? 0 : GOLDENRATIO/2; 
+    const targetY = mounted ? 0 : GOLDENRATIO / 2;
 
     // Animate opacity
     if (frame.current.material.opacity !== targetOpacity) {
@@ -264,7 +273,7 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
             hover(false);
           }}
           scale={[1, GOLDENRATIO, 0.05]}
-          position={[0, GOLDENRATIO / 2, 0]} // Keep the original position
+          position={[0, GOLDENRATIO / 2, 0]}
         >
           <boxGeometry />
           <meshStandardMaterial
@@ -290,7 +299,7 @@ function Frame({ url, selectedId, c = new THREE.Color(), ...props }) {
           maxWidth={0.1}
           anchorX="left"
           anchorY="top"
-          position={[0.55, GOLDENRATIO, 0]} // Adjusted position to align with frame
+          position={[0.55, GOLDENRATIO, 0]}
           fontSize={0.025}
         >
           {name.split("-").join(" ")}
