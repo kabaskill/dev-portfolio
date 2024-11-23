@@ -15,8 +15,7 @@ export function ThreeToggle() {
         "px-4 py-1  text-center",
         "w-full",
         "bg-gray-800 dark:bg-gray-200 text-gray-200 dark:text-gray-800",
-        "hover:bg-gray-700 dark:hover:bg-gray-300",
-        "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        "hover:bg-gray-700 dark:hover:bg-gray-300"
       )}
       aria-label={isThreeD ? "Switch to Classic View" : "Switch to 3D View"}
     >

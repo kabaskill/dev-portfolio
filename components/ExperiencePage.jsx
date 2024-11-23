@@ -1,4 +1,5 @@
 import userData from "@constants/data";
+import { cn } from "@lib/cn";
 import Link from "next/link";
 
 export default function ExperiencePage() {
@@ -10,12 +11,12 @@ export default function ExperiencePage() {
         </h2>
       </div>
       <div className="bg-[#F1F1F1] dark:bg-gray-900 -mt-4">
-        <div className="grid grid-cols-1 dark:bg-gray-900 max-w-xl mx-auto pt-20">
+        <ul className="grid grid-cols-1 dark:bg-gray-900 max-w-xl mx-auto pt-20">
           {/* Experience card */}
           {userData.experience.map((exp, idx) => (
             <>
               <ExperienceCard
-                key={exp.title}
+                key={exp.desc}
                 title={exp.title}
                 desc={exp.desc}
                 year={exp.year}
@@ -32,7 +33,7 @@ export default function ExperiencePage() {
               )}
             </>
           ))}
-        </div>
+        </ul>
       </div>
     </section>
   );
@@ -40,12 +41,19 @@ export default function ExperiencePage() {
 
 const ExperienceCard = ({ title, desc, year, company, companyLink }) => {
   return (
-    <div className="relative experience-card border p-4 rounded-md shadow-xl bg-gray-100 dark:bg-gray-800 z-10 mx-4">
+    <Link
+      href={companyLink}
+      target="_blank"
+      className={cn(
+        "relative experience-card border p-4 rounded-md shadow-xl bg-gray-100 dark:bg-gray-800 z-10 mx-4",
+        "hover:scale-105 transiton duration-300 ease-in-out"
+      )}
+    >
       <p className="absolute -top-10 md:-left-10 md:-top-10 text-4xl text-gray-300 font-bold dark:text-gray-800">
         {year}
       </p>
       <h3 className="font-semibold text-xl">{title}</h3>
-      <Link href={companyLink} className="flex text-gray-500">
+      <p className="flex text-gray-500">
         {company}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -62,8 +70,8 @@ const ExperienceCard = ({ title, desc, year, company, companyLink }) => {
             d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm5.854 8.803a.5.5 0 1 1-.708-.707L9.243 6H6.475a.5.5 0 1 1 0-1h3.975a.5.5 0 0 1 .5.5v3.975a.5.5 0 1 1-1 0V6.707l-4.096 4.096z"
           />
         </svg>
-      </Link>
+      </p>
       <p className="text-gray-600 dark:text-gray-400 my-2">{desc}</p>
-    </div>
+    </Link>
   );
 };

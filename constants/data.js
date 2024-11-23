@@ -9,6 +9,11 @@ const userData = {
   projects: {
     dev: [
       {
+        title: "3D Portfolio",
+        link: "https://oguzkabasakal.com/threescene",
+        imgUrl: "/3d-portfolio.png",
+      },
+      {
         title: "Formenwerkstatt Website",
         link: "https://formenwerkstatt.de",
         imgUrl: "/fw-banner.png",
@@ -311,8 +316,8 @@ const userData = {
     title: "Developing by day, slaying demons by night",
     description: [
       `I've been designing soundscapes and music for all kinds of visual content since 2012.`,
-      `Studying for a Master's Degree on Expanded Media at Hochschule Darmstadt.`,
-      `Nowadays, I focused my efforts to software and game development. Started learning Unity and C#in 2019 but web development became prevalent and now I'm building full-stack web apps using various technologies.`,
+      `Graduated from the Master's Degree on Expanded Media at Hochschule Darmstadt.`,
+      `Nowadays, I focused my efforts to software and game development. Started learning Unity and C# in 2019 but web development became prevalent and now I'm building full-stack web apps using various technologies.`,
     ],
     currentProject: "Fugue State",
     currentProjectUrl: "https://github.com/kabaskill/fugue-state-react",
@@ -323,7 +328,7 @@ const userData = {
       title: "Web Designer / Social Media Manager",
       company: "Formenwerkstatt GmbH",
       year: "2024 - Present",
-      companyLink: "https://www.formenwerksttat.de/",
+      companyLink: "https://www.formenwerkstatt.de/",
       desc: "Running and managing the company's digital assets and social media, including the web site, social media accounts and internal file server.",
     },
     {
@@ -337,7 +342,7 @@ const userData = {
       title: "Sound Designer",
       company: "freelance",
       year: "2011 - Present",
-      companyLink: "",
+      companyLink: "https://www.youtube.com/watch?v=WdwXRmtowxA",
       desc: "Designing soundscapes for all kinds of visual media and providing solutions to live recording, foley, voice-over, sound design and everything audio related in general",
     },
     {
@@ -363,7 +368,6 @@ const userData = {
     },
   ],
 
-  resumeUrl: "https://drive.google.com/file/d/1HK_yHw09zytdS7vFxSy1lgLoj5Vn7nQm/view?usp=sharing",
   socialLinks: {
     instagram: "https://instagram.com/mr.kabaskill",
     linkedin: "https://linkedin.com/in/oguzkabasakal",
@@ -381,7 +385,7 @@ export const allProjects = [
 
 export const favProjects = allProjects.filter(
   (project) =>
-    project.title === "Fugue State" ||
+    project.title === "3D Portfolio" ||
     project.title === "Formenwerkstatt Website" ||
     project.title === "Showreel"
 );

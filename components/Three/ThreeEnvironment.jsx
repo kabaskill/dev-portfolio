@@ -34,6 +34,7 @@ export function ThreeEnvironment({ images }) {
     >
       <AudioPlayer
         url="/audio/win95_startup.mp3"
+        // url="/audio/cliffs.mp3"
         position={[0, -0.95, 0]}
         playOnMount={true}
         volume={0.7}

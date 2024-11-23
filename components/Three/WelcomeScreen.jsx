@@ -82,6 +82,9 @@ function MainMessage() {
         Select a category from the dropdown at the top <br />
         to see more work examples
       </p>
+      <p className="text-sm sm:text-lg font-light text-gray-300">
+        You can interact with the audio playback by clicking on the sphere
+      </p>
       <div className="flex items-center justify-between w-full">
         <PiMouseLeftClickFill className="text-xl sm:text-2xl" />
         <p className="text-sm sm:text-base ">

@@ -3,12 +3,13 @@ import { RainbowHighlight } from "./RainbowHighlight";
 import userData from "@constants/data";
 import Image from "next/image";
 import { cn } from "@lib/cn";
+import Link from "next/link";
 
 export default function Hero() {
   const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
 
   return (
-    <section className={cn("", "overflow-hidden relative py-2")}>
+    <section className={cn("overflow-hidden relative py-2")}>
       <div className="flex justify-around items-start w-4/5 mx-auto">
         {/* Text container */}
         <aside className="w-full md:w-3/4 ext-center  md:text-left lg:p-4">
@@ -38,13 +39,15 @@ export default function Hero() {
 
         {/* Image container */}
         <aside className="hidden lg:block relative text-center lg:p-4">
-          <Image
-            src={userData.avatarUrl}
-            alt="avatar"
-            className="rounded-full shadow mx-auto"
-            width={768}
-            height={432}
-          />
+          
+            <Image
+              src={userData.avatarUrl}
+              alt="avatar"
+              className="rounded-full shadow mx-auto"
+              width={768}
+              height={432}
+            />
+         
           <div className="flex flex-row justify-between mt-4">
             <div className="flex flex-row space-x-2 pl-40">
               <svg

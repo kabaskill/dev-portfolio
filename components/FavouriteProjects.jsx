@@ -92,12 +92,7 @@ export default function FavouriteProjects() {
               <Image
                 width={500}
                 height={500}
-                src={
-                  favProjects[2].imgUrl ||
-                  `https://img.youtube.com/vi/${
-                    favProjects[2].link.split("v=")[1]
-                  }/maxresdefault.jpg`
-                }
+                src={favProjects[2].imgUrl}
                 alt="portfolio"
                 className="transform hover:scale-125 transition duration-1000 ease-out object-cover shadow-2xl"
               />
