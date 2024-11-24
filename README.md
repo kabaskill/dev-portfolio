@@ -26,14 +26,6 @@ The website is built in my favourite Tech Stack and deployed on [Vercel](https:/
 - Run the local development server by using `npm run dev` or `yarn dev`
 - Make the required edits and deploy to YOUR GitHub repo for CI/CD.
 
-# Deployment
-
-Deployment can be done in 3 easy steps.
-
-- Login to [Vercel](https://vercel.com) or signup for an account if you don't have one.
-- Create a `New Project` and select YOUR GitHub repository of the portfolio project.
-- Wait for Vercel to deploy your project to production.
-
 # License
 
 This template is completely open source and free to use. Use it for client projects or your own portfolio project.
