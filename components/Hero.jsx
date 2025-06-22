@@ -12,7 +12,7 @@ export default function Hero() {
     <section className={cn("overflow-hidden relative py-2")}>
       <div className="flex justify-around items-start w-4/5 mx-auto">
         {/* Text container */}
-        <aside className="w-full md:w-3/4 ext-center  md:text-left lg:p-4">
+        <aside className="w-full md:w-3/4 text-center  md:text-left lg:p-4 ">
           <RoughNotationGroup show={true}>
             <RainbowHighlight color={colors[0]}>
               <h2 className="text-4xl md:text-8xl font-bold text-gray-700 dark:text-gray-200 my-2">
@@ -24,11 +24,7 @@ export default function Hero() {
                 Designer
               </h2>
             </RainbowHighlight>
-            <RainbowHighlight color={colors[2]}>
-              <h2 className="text-4xl md:text-8xl font-bold text-gray-700 dark:text-gray-200 my-2">
-                Programmer
-              </h2>
-            </RainbowHighlight>
+
             <RainbowHighlight color={colors[3]}>
               <h2 className="text-4xl md:text-8xl font-bold text-gray-700 dark:text-gray-200 my-2">
                 Composer
@@ -44,8 +40,8 @@ export default function Hero() {
               src={userData.avatarUrl}
               alt="avatar"
               className="rounded-full shadow mx-auto"
-              width={768}
-              height={432}
+              width={480}
+              height={300}
             />
          
           <div className="flex flex-row justify-between mt-4">

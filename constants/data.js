@@ -9,6 +9,11 @@ const userData = {
   projects: {
     dev: [
       {
+        title: "blitz-react",
+        link: "https://www.npmjs.com/package/blitz-react?activeTab=readme",
+        imgUrl: "/blitz-react.png",
+      },
+      {
         title: "3D Portfolio",
         link: "https://oguzkabasakal.com/threescene",
         imgUrl: "/3d-portfolio.png",
@@ -385,7 +390,7 @@ export const allProjects = [
 
 export const favProjects = allProjects.filter(
   (project) =>
+    project.title === "blitz-react" ||
     project.title === "3D Portfolio" ||
-    project.title === "Formenwerkstatt Website" ||
     project.title === "Showreel"
 );
