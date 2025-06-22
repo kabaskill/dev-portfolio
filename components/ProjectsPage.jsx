@@ -65,7 +65,7 @@ export default function ProjectsPage() {
         <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-6 pb-40">
           {projectList.map((proj, idx) => (
             <ProjectCard
-              key={`${proj.title}-${idx}`}
+              key={`${proj.link}-${idx}`}
               title={proj.title}
               link={proj.link}
               imgUrl={proj.imgUrl}
