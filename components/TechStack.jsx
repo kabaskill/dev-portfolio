@@ -41,7 +41,7 @@ export default function TechStack() {
   const iconSize = 72;
   return (
     <>
-      <h2 className="bg-red-500 text-3xl rounded-md px-2 py-1 inline-block font-bold text-gray-50 ">
+      <h2 className="bg-red-500 text-2xl rounded-md px-2 py-1 inline-block font-bold text-gray-50 ">
         Tech Stack
       </h2>
       <div className="bg-slate-200 dark:bg-slate-700 rounded-lg flex justify-center flex-row flex-wrap gap-8 mt-2 px-4 py-4  ">

@@ -324,15 +324,22 @@ const userData = {
       `Graduated from the Master's Degree on Expanded Media at Hochschule Darmstadt.`,
       `Nowadays, I focused my efforts to software and game development. Started learning Unity and C# in 2019 but web development became prevalent and now I'm building full-stack web apps using various technologies.`,
     ],
-    currentProject: "Fugue State",
-    currentProjectUrl: "https://github.com/kabaskill/fugue-state-react",
+    currentProject: "blitz-react",
+    currentProjectUrl: "https://www.npmjs.com/package/blitz-react?activeTab=readme",
   },
 
   experience: [
     {
+      title: "Web Developer (Part time)",
+      company: "Naviri UG",
+      year: "2025 - Present",
+      companyLink: "https://www.naviri.io/",
+      desc: "Developing a data-driven web application on Remix, TypeScript, Firebase and Tailwind CSS",
+    },
+    {
       title: "Web Designer / Social Media Manager",
       company: "Formenwerkstatt GmbH",
-      year: "2024 - Present",
+      year: "2024 - 2025",
       companyLink: "https://www.formenwerkstatt.de/",
       desc: "Running and managing the company's digital assets and social media, including the web site, social media accounts and internal file server.",
     },

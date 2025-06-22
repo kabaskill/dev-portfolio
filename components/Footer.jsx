@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="max-w-6xl  mx-auto px-4 py-10 md:py-20">
         <div className="h-0.5 w-full bg-white dark:bg-gray-700"></div>
         <div className="flex flex-col space-y-4 md:space-y-0 md:flex-row justify-between md:items-center mt-8">
-          <p>&copy; 2024</p>
+          <p>&copy; {new Date().getFullYear()}</p>
           <div className=" transform hover:scale-110 hover:-rotate-3 transition duration-300">
             <Link
               href={`mailto:${userData.email}`}
