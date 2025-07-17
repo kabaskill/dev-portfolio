@@ -34,11 +34,6 @@ const userData = {
         imgUrl: "/gamedalf.png",
       },
       {
-        title: "Tourio",
-        link: "https://tourio-travel-app-rho.vercel.app",
-        imgUrl: "/tourio.png",
-      },
-      {
         title: "Rubby the Duck - TBD",
         link: "https://www.youtube.com/watch?v=tXc_zhsvte8",
         imgUrl: "/rubby-the-duck-min.png",
