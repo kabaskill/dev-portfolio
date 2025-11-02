@@ -330,7 +330,7 @@ const userData = {
 
   experience: [
     {
-      title: "Web Developer (Part time)",
+      title: "Web Developer",
       company: "Naviri UG",
       year: "2025 - Present",
       companyLink: "https://app.naviri.io/",
