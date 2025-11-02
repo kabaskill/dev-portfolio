@@ -1,35 +1,26 @@
-## Portfolio Website For Developers 💯
+# Portfolio Website
 
-- Responsive layout, works well on both Mobile and Desktop
-- Dark mode support. Click buttons to toggle dark mode and light mode.
-- Clear React components and tailwind styling.
-- Clear call to actions.
+Check it out live at: [https://oguzkabasakal.com](https://oguzkabasakal.com/threescene)
 
-# Pages
+- Fully 3D Portfolio Gallery
+- Responsive layout
+- Dark mode
 
-The structure is pretty simple but slick.
+## Tech Stack
 
-# Tech Stack
+- [Next.js](https://nextjs.org)
+- [tailwindcss](https://tailwindcss.com)
+- [ThreeJS](https://threejs.org)
+- [react-three-fiber](https://r3f.docs.pmnd.rs/)
+- [React Rough Notation](https://roughnotation.com)
+- [EmailJS](https://www.emailjs.com/)
+- [Vercel](https://vercel.com)
 
-The website is built in my favourite Tech Stack and deployed on [Vercel](https://vercel.com)
+## License
 
-- [Next.js](https://nextjs.org) for building React Components.
-- [tailwindcss](https://tailwindcss.com) for styling.
-- [React Rough Notation](https://roughnotation.com) for Hero section highlighting.
-- [EmailJS](https://www.emailjs.com/) for handling the contact form.
-- [Vercel](https://vercel.com) for deployments and CI/CD.
+This template is completely open source and free to use. Use it for client
+projects or your own portfolio project.
 
-# Usage
-
-- Clone the repository using `git clone https://github.com/kabaskill/dev-portfolio.git`
-- Install all the modules by using `npm i` or `npm install` or `yarn`
-- Run the local development server by using `npm run dev` or `yarn dev`
-- Make the required edits and deploy to YOUR GitHub repo for CI/CD.
-
-# License
-
-This template is completely open source and free to use. Use it for client projects or your own portfolio project.
-
-# Credits
+## Credits
 
 - Thanks to [Manu Arora](https://manuarora.in/)

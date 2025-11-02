@@ -333,7 +333,7 @@ const userData = {
       title: "Web Developer (Part time)",
       company: "Naviri UG",
       year: "2025 - Present",
-      companyLink: "https://www.naviri.com/",
+      companyLink: "https://app.naviri.io/",
       desc: "Developing a data-driven web application on Remix, TypeScript, Firebase and Tailwind CSS",
     },
     {
