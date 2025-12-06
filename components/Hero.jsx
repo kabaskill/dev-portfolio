@@ -1,11 +1,15 @@
+'use client';
 import { RoughNotationGroup } from "react-rough-notation";
 import { RainbowHighlight } from "./RainbowHighlight";
-import userData from "@constants/data";
+import { userDataPromise } from "@constants/data";
 import Image from "next/image";
 import { cn } from "@lib/cn";
 import Link from "next/link";
+import { use } from "react";
 
 export default function Hero() {
+  // React 19 use() hook - unwrap promise-wrapped constants
+  const userData = use(userDataPromise);
   const colors = ["#F59E0B", "#84CC16", "#10B981", "#3B82F6"];
 
   return (

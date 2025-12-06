@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 import userData from "@constants/data";
+import { Activity } from "react";
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme();
@@ -110,7 +111,7 @@ export default function Navbar() {
               className="w-10 h-10 p-3 rounded  transition-transform hover:scale-110"
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
             >
-              {mounted && (
+              <Activity active={mounted}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
@@ -135,7 +136,7 @@ export default function Navbar() {
                     />
                   )}
                 </svg>
-              )}
+              </Activity>
             </button>
           </div>
         </div>
@@ -171,7 +172,7 @@ function NavLink({ href, children }) {
       }`}
     >
       {children}
-      {isActive && (
+      <Activity active={isActive}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -186,7 +187,7 @@ function NavLink({ href, children }) {
             d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
           />
         </svg>
-      )}
+      </Activity>
     </Link>
   );
 }

@@ -2,6 +2,7 @@ import "@styles/globals.css";
 import { Inter } from "next/font/google";
 import { Providers } from "./providers";
 import { ThreeToggle } from "../components/Three/ThreeToggle";
+import { ViewTransition } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({ children }) {
         <Providers>
           <main id="main" className="min-h-screen">
             <ThreeToggle />
-            {children}
+            <ViewTransition>
+              {children}
+            </ViewTransition>
           </main>
         </Providers>
       </body>

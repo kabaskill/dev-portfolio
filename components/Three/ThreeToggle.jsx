@@ -2,6 +2,7 @@
 import { usePathname } from "next/navigation";
 import { cn } from "@lib/cn";
 import Link from "next/link";
+import { ViewTransition } from "react";
 
 export function ThreeToggle() {
   const pathname = usePathname();
@@ -19,7 +20,9 @@ export function ThreeToggle() {
       )}
       aria-label={isThreeD ? "Switch to Classic View" : "Switch to 3D View"}
     >
-      {isThreeD ? "Switch to Classic View" : "Switch to 3D Version"}
+      <ViewTransition>
+        {isThreeD ? "Switch to Classic View" : "Switch to 3D Version"}
+      </ViewTransition>
     </Link>
   );
 }

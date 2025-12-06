@@ -389,11 +389,16 @@ const userData = {
 
 export default userData;
 
+// React 19 use() hook compatible - promise-wrapped exports
+export const userDataPromise = Promise.resolve(userData);
+
 export const allProjects = [
   ...userData.projects.dev,
   ...userData.projects.sound,
   ...userData.projects.music,
 ];
+
+export const allProjectsPromise = Promise.resolve(allProjects);
 
 export const favProjects = allProjects.filter(
   (project) =>
@@ -401,3 +406,5 @@ export const favProjects = allProjects.filter(
     project.title === "3D Portfolio" ||
     project.title === "Showreel"
 );
+
+export const favProjectsPromise = Promise.resolve(favProjects);

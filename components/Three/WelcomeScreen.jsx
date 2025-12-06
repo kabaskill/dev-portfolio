@@ -8,6 +8,7 @@ import { FaArrowsRotate } from "react-icons/fa6";
 import { RxGear } from "react-icons/rx";
 import { MdOutlineTouchApp, MdOutlinePinch } from "react-icons/md";
 import { useState } from "react";
+import { Activity } from "react";
 
 export default function WelcomeScreen({ isWelcome, setIsWelcome }) {
   const [isIntro, setIsIntro] = useState(true);
@@ -22,7 +23,7 @@ export default function WelcomeScreen({ isWelcome, setIsWelcome }) {
 
   return (
     <>
-      {isWelcome ? (
+      <Activity active={isWelcome}>
         <div
           className={cn(
             "fade-in",
@@ -36,7 +37,9 @@ export default function WelcomeScreen({ isWelcome, setIsWelcome }) {
         >
           {isIntro ? <Intro /> : <MainMessage />}
         </div>
-      ) : (
+      </Activity>
+
+      <Activity active={!isWelcome}>
         <div
           className={cn(
             "absolute z-20 bottom-4 right-4 w-12 h-12",
@@ -50,7 +53,7 @@ export default function WelcomeScreen({ isWelcome, setIsWelcome }) {
             className="text-3xl transition-transform duration-300 hover:rotate-90"
           />
         </div>
-      )}
+      </Activity>
     </>
   );
 }

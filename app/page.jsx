@@ -6,7 +6,7 @@ import Navbar from "@components/Navbar";
 import userData from "@constants/data";
 import getLatestRepos from "@lib/getLatestRepos";
 
-async function getGithubRepos() {
+function getGithubRepos() {
   const token = process.env.GITHUB_AUTH_TOKEN;
   return getLatestRepos(userData, token);
 }
@@ -15,15 +15,16 @@ export const metadata = {
   title: "Home | Oguz Kabasakal",
 };
 
-export default async function HomePage() {
-  const repositories = await getGithubRepos();
+export default function HomePage() {
+  // Pass promise directly to client component - React 19 streaming pattern
+  const repositoriesPromise = getGithubRepos();
 
   return (
     <>
       <Navbar />
       <Hero />
       <FavouriteProjects />
-      <LatestCode repositories={repositories} />
+      <LatestCode repositoriesPromise={repositoriesPromise} />
       <Footer />
     </>
   );
