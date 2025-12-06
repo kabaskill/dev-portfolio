@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { categories } from "@constants/frames";
 import { ThreeEnvironment } from "./ThreeEnvironment";
 import { cn } from "@lib/cn";
@@ -8,6 +8,15 @@ import WelcomeScreen from "./WelcomeScreen";
 export function ThreeScenePage() {
   const [imagesArray, setImagesArray] = useState(categories[0].subFrames);
   const [isWelcome, setIsWelcome] = useState(true);
+  const [shouldRenderCanvas, setShouldRenderCanvas] = useState(false);
+
+  useEffect(() => {
+    // Ensure Canvas renders after component mounts
+    const timer = setTimeout(() => {
+      setShouldRenderCanvas(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   function handleButtonClick(index) {
     setImagesArray(categories[index].subFrames);
@@ -17,7 +26,7 @@ export function ThreeScenePage() {
     <div className="absolute inset-0 z-10">
       <WelcomeScreen isWelcome={isWelcome} setIsWelcome={setIsWelcome} />
 
-      <ThreeEnvironment images={imagesArray} />
+      {shouldRenderCanvas && <ThreeEnvironment images={imagesArray} />}
 
       <div className="absolute top-12 left-1/2 translate-x-[-50%] flex gap-4">
         <select

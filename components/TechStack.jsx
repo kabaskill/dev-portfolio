@@ -1,10 +1,6 @@
 import {
-  SiAdobecreativecloud,
-  SiAdobecreativecloudHex,
-  SiCsharp,
-  SiCsharpHex,
-  SiCss3,
-  SiCss3Hex,
+  SiCss,
+  SiCssHex,
   SiFigma,
   SiFigmaHex,
   SiFmod,
@@ -46,7 +42,7 @@ export default function TechStack() {
       </h2>
       <div className="bg-slate-200 dark:bg-slate-700 rounded-lg flex justify-center flex-row flex-wrap gap-8 mt-2 px-4 py-4  ">
         <SiHtml5 title="HTML" color={SiHtml5Hex} size={iconSize} />
-        <SiCss3 title="CSS" color={SiCss3Hex} size={iconSize} />
+        <SiCss title="CSS" color={SiCssHex} size={iconSize} />
         <SiJavascript title="JavaScript" color={SiJavascriptHex} size={iconSize} />
         <SiTypescript title="TypeScript" color={SiTypescriptHex} size={iconSize} />
         <SiReact title="React" color={SiReactHex} size={iconSize} />
@@ -62,14 +58,8 @@ export default function TechStack() {
         <SiGithub title="GitHub" color={SiGithubHex} size={iconSize} />
         <SiMongodb title="Mongodb" color={SiMongodbHex} size={iconSize} />
         <SiNeovim title="NeoVim" color={SiNeovimHex} size={iconSize} />
-        <SiCsharp title="C#" color={SiCsharpHex} size={iconSize} />
         <SiUnity title="Unity" color={SiUnityHex} size={iconSize} />
         <SiFmod title="Fmod" color={SiFmodHex} size={iconSize} />
-        <SiAdobecreativecloud
-          title="Adobe Creative Cloud"
-          color={SiAdobecreativecloudHex}
-          size={iconSize}
-        />
         <SiFigma title="Figma" color={SiFigmaHex} size={iconSize} />
       </div>
     </>

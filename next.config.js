@@ -21,7 +21,10 @@ const nextConfig = {
   },
   transpilePackages: ["three"],
 
-  // SVG handling
+  // Turbopack configuration
+  turbopack: {},
+
+  // SVG handling (webpack fallback)
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

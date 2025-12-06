@@ -20,6 +20,8 @@ export default function AudioPlayer({
   const audioBuffer = useRef(null);
 
   useEffect(() => {
+    let isMounted = true;
+
     try {
       listener.current = new THREE.AudioListener();
       camera.add(listener.current);
@@ -36,7 +38,7 @@ export default function AudioPlayer({
       audioLoader.load(
         url,
         (buffer) => {
-          if (sound.current) {
+          if (sound.current && isMounted) {
             audioBuffer.current = buffer; // Store the buffer for reuse
             sound.current.setBuffer(buffer);
             sound.current.setVolume(volume);
@@ -45,18 +47,20 @@ export default function AudioPlayer({
             sound.current.setDistanceModel("linear");
 
             sound.current.onEnded = () => {
-              setIsPlaying(false);
-              // Reset the buffer when audio ends
-              if (sound.current) {
-                sound.current.stop();
-                sound.current.setBuffer(audioBuffer.current);
+              if (isMounted) {
+                setIsPlaying(false);
+                // Reset the buffer when audio ends
+                if (sound.current) {
+                  sound.current.stop();
+                  sound.current.setBuffer(audioBuffer.current);
+                }
               }
             };
 
             sound.current.setFilter(analyser.current);
             setIsLoaded(true);
 
-            if (playOnMount) {
+            if (playOnMount && isMounted) {
               sound.current.play();
               setIsPlaying(true);
             }
@@ -69,6 +73,7 @@ export default function AudioPlayer({
       );
 
       return () => {
+        isMounted = false;
         if (sound.current) {
           sound.current.stop();
           if (sound.current.source) {
@@ -82,7 +87,8 @@ export default function AudioPlayer({
     } catch (error) {
       console.error("Audio initialization error:", error);
     }
-  }, [camera, url, volume, playOnMount]);
+    // Remove playOnMount from dependencies to prevent re-initialization
+  }, [camera, url, volume]);
 
   function togglePlay() {
     if (!sound.current || !isLoaded || !audioBuffer.current) return;
