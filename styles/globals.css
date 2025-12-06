@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Content sources - paths relative to this CSS file */
+/* Content sources */
 @source "../app";
 @source "../components";
 @source "../pages";
@@ -9,22 +9,10 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  /* Custom transition durations */
-  --transition-duration-0: 0ms;
-  --transition-duration-2000: 2000ms;
-  --transition-duration-4000: 4000ms;
 
-  /* Custom animations */
-  --animate-blink: blink 1.5s ease-in-out infinite;
-
-  /* Keyframes for blink animation */
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-  }
 }
 
-/* Base styles - these will be overridden by Tailwind utilities */
+/* Base styles */
 @layer base {
   html,
   body {
@@ -64,33 +52,3 @@
   }
 }
 
-/* ViewTransition slide animations */
-::view-transition-old(root) {
-  animation: slide-out-left 0.3s ease-in-out;
-}
-
-::view-transition-new(root) {
-  animation: slide-in-right 0.3s ease-in-out;
-}
-
-@keyframes slide-out-left {
-  from {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes slide-in-right {
-  from {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}

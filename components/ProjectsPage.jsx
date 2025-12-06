@@ -5,7 +5,6 @@ import { RainbowHighlight } from "./RainbowHighlight";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ViewTransition } from "react";
 
 export default function ProjectsPage() {
   const projects = userData.projects;
@@ -64,7 +63,6 @@ export default function ProjectsPage() {
 
         {/* Grid starts here */}
         <section className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 py-6 pb-40">
-          <ViewTransition>
             {projectList.map((proj, idx) => (
               <ProjectCard
                 key={`${proj.link}-${idx}`}
@@ -74,7 +72,6 @@ export default function ProjectsPage() {
                 number={`${idx + 1}`}
               />
             ))}
-          </ViewTransition>
         </section>
       </div>
     </section>

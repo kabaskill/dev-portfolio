@@ -24,9 +24,7 @@ export default function RootLayout({ children }) {
         <Providers>
           <main id="main" className="min-h-screen">
             <ThreeToggle />
-            <ViewTransition>
               {children}
-            </ViewTransition>
           </main>
         </Providers>
       </body>
