@@ -1,6 +1,6 @@
 # Portfolio Website
 
-Check it out live at: [https://oguzkabasakal.com](https://oguzkabasakal.com/threescene)
+Check the live version [here](https://dev-portfolio-gamma-sepia.vercel.app/)
 
 - Fully 3D Portfolio Gallery
 - Responsive layout
